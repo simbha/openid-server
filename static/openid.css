@@ -17,7 +17,7 @@ div {
   width: 100%;
 }
 
-.form {
+div.content {
   border: 1px solid lightgrey;
   border-radius: 5px;
   margin-top: 1em;

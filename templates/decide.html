@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<dl>
+  <dt>Identity</dt>
+  <dd>{{ identity }}</dd>
+</dl>
+<dl>
+  <dt>Trust Root</dt>
+  <dd>{{ trust_root }}</dd>
+</dl>
+<form method="POST" action="/allow">
+  <input type=password name="pass" value="" /><br />
+  <p>Allow this authentication to proceed?</p>
+  <button type="submit" class="btn btn-primary" name="yes" value="yes" />Yes</button>
+  <button type="submit" class="btn" name="no" value="no" />No</button>
+        </form>
+{% endblock %}

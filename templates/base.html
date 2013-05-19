@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Q&D OpenID Server</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    {{ head_extras }}
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link href="static/openid.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <h1>Q&D OpenID Server</h1>
+    <div class="content">
+      {% block content %}
+        {% if err %}
+          <p class="text-error">{{ err }}</p>
+        {% endif %}
+        {% if msg %}
+          <p class="info">{{ msg }}</p>
+        {% endif %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
