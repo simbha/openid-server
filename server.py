@@ -64,13 +64,10 @@ class ServerHandler(BaseHTTPRequestHandler):
             path = self.parsed_uri[2].lower()
 
             if path == '/':
-                #self.showMainPage()
-                self.showIdPage("hugo")
+                self.showIdPage()
             elif path == '/openidserver':
                 self.serverEndPoint(self.query)
 
-            elif path.startswith('/id/'):
-                self.showIdPage(path)
             elif path.startswith('/yadis/'):
                 self.showYadis(path[7:])
             elif path == '/serveryadis':
@@ -297,13 +294,13 @@ class ServerHandler(BaseHTTPRequestHandler):
 
         self.showPage(200, 'Approve OpenID request?', form=form) #msg=msg,
 
-    def showIdPage(self, path):
+    def showIdPage(self):
         link_tag = '<link rel="openid.server" href="%sopenidserver">' %\
               self.server.base_url
         yadis_loc_tag = '<meta http-equiv="x-xrds-location" content="%s">'%\
-            (self.server.base_url+'yadis/'+path[4:])
+            (self.server.base_url+'yadis')
         disco_tags = link_tag + yadis_loc_tag
-        ident = self.server.base_url #+ path[0:]
+        ident = self.server.base_url
 
         approved_trust_roots = []
         for (aident, trust_root) in self.server.approved.keys():
@@ -404,7 +401,9 @@ class ServerHandler(BaseHTTPRequestHandler):
             body +=  '<p class="text-error">{}</p>'.format(err)
 
         if msg is not None:
+            body += '<div class="form">'
             body += '<p class="info">{}</div>'.format(msg)
+            body += '</div>'
 
         if form is not None:
             body += '<div class="form">{}</div>'.format(form)
